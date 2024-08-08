@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 
 const App = () => {
   const [text, setText] = useState('привет мама');
@@ -41,6 +42,13 @@ const App = () => {
     }
   };
 
+  // const Input = styled.p`
+  //   background-color: blue;
+  //   color: white;
+  //   padding: 10px;
+  //   border: none;
+  //   border-radius: 5px;
+  // `;
   return (
     <div>
       <h1>Typing Speed Test</h1>
