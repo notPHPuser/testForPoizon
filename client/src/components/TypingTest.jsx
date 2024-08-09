@@ -1,30 +1,10 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setInput, incrementErrors, setWPM, setStartTime, reset } from '../store/typingSlice';
+import styled from 'styled-components';
 
 // Массив русских слов
-const russianWords = [
-  'Это',
-  'пример',
-  'текста',
-  'для',
-  'теста',
-  'на',
-  'скорость',
-  'печати',
-  'русский',
-  'язык',
-  'слова',
-  'перемешанные',
-  'случайно',
-  'генерируются',
-  'автоматически',
-  'алгоритмом',
-  'рандом',
-  'числа',
-  'генерируются',
-  'автоматически',
-];
+const russianWords = ['мама', 'папа', 'сын', 'дочь', 'бабушка', 'кот', 'собака'];
 
 // Выбираем 10 случайных слов из массива
 const randomWords = russianWords.sort(() => Math.random() - 0.5).slice(0, 10);
@@ -62,16 +42,20 @@ const TypingTest = () => {
     }
   };
 
+  const Main = styled.div`
+    width: 100%;
+    // display: flex;
+    height: 100vh;
+    // flex-direction: colomn;
+    align-items: center;
+    text-align: center;
+  `;
+
   return (
     <div>
       <h1>Тест на скорость печати</h1>
-      <p style={{ color: 'grey' }}>{TEXT}</p>
-      <input type='text' value={input} onChange={handleInputChange} style={{ width: '100%' }} />
-      <div>
-        <h2>Результаты:</h2>
-        <p>Ошибки: {errors}</p>
-        <p>Скорость печати (WPM): {wpm}</p>
-      </div>
+      {/* <p style={{ color: 'grey' }}>{TEXT}</p> */}
+
       <div>
         <h2>Подсветка:</h2>
         {TEXT.split('').map((char, index) => (
@@ -85,6 +69,14 @@ const TypingTest = () => {
           </span>
         ))}
       </div>
+      <input type='text' value={input} onChange={handleInputChange} />
+      {input.length === TEXT.length && (
+        <div>
+          <h2>Результаты:</h2>
+          <p>Ошибки: {errors}</p>
+          <p>Скорость печати (WPM): {wpm}</p>
+        </div>
+      )}
     </div>
   );
 };
