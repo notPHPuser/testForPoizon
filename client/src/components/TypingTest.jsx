@@ -4,16 +4,16 @@ import { setInput, incrementErrors, setWPM, setStartTime, reset } from '../store
 import s from './TypingTest.module.css';
 import { RefreshCcw } from 'lucide-react';
 
-const russianWords = ['мама', 'папа', 'сын', 'дочь', 'бабушка', 'кот', 'собака'];
-
-const randomWords = russianWords.sort(() => Math.random() - 0.5).slice(0, 10);
-
-const TEXT = randomWords.join(' ');
+const generateText = () => {
+  const russianWords = ['мама', 'папа', 'сын', 'дочь', 'бабушка', 'кот', 'собака'];
+  const randomWords = russianWords.sort(() => Math.random() - 0.5).slice(0, 10);
+  return randomWords.join(' ');
+};
 
 const TypingTest = () => {
   const dispatch = useDispatch();
   const { input, errors, wpm, startTime } = useSelector((state) => state.typing);
-  const [text, setText] = useState(TEXT);
+  const [text, setText] = useState(generateText());
 
   useEffect(() => {
     if (input.length === 0) {
@@ -35,24 +35,24 @@ const TypingTest = () => {
       dispatch(setStartTime(new Date()));
     }
 
-    if (value[value.length - 1] !== TEXT[input.length]) {
+    if (value[value.length - 1] !== text[input.length]) {
       dispatch(incrementErrors());
     }
   };
 
   const reload = () => {
-    setText(input);
+    setText(generateText());
     dispatch(reset());
   };
 
   return (
     <div className={s.all}>
       <h1 className={s.test}>Тест на скорость печати</h1>
-      {/* <p style={{ color: 'grey' }}>{TEXT}</p> */}
+      {/* <p style={{ color: 'grey' }}>{text}</p> */}
 
       <div className={s.type}>
-        <h2>Текст:</h2>
-        {TEXT.split('').map((char, index) => (
+        <h2 className={s.s}>Текст:</h2>
+        {text.split('').map((char, index) => (
           <span
             className={s.text}
             key={index}
@@ -69,7 +69,7 @@ const TypingTest = () => {
       </div>
       <input className={s.input} type='text' value={input} onChange={handleInputChange} />
 
-      {input.length === TEXT.length && (
+      {input.length === text.length && (
         <div className={s.result}>
           <h2>Результаты:</h2>
           <p>Ошибки: {errors}</p>
