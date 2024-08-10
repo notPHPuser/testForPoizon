@@ -1,0 +1,48 @@
+.all {
+  width: 70%;
+  height: 50vh;
+  border: 1px solid red;
+  margin: 0 auto;
+  position: relative;
+  /* align-items: center; */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  top: 20vh;
+}
+
+.text {
+  font-size: large;
+}
+
+.input {
+  color: white;
+  width: 50%;
+  position: relative;
+  left: 25%;
+  top: 60px;
+  outline: none;
+  height: 20px;
+  background-color: inherit;
+  border: 1px solid white;
+}
+
+.type {
+  position: relative;
+  top: 50px;
+}
+
+.test {
+  position: relative;
+  top: 40px;
+}
+
+.result {
+  position: relative;
+  /* top: -50px; */
+  width: 100%;
+  height: 100vh;
+  background-color: red;
+  z-index: 1;
+}
