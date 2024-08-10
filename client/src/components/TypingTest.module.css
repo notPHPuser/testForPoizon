@@ -46,3 +46,8 @@
   background-color: red;
   z-index: 1;
 }
+
+.reload {
+  width: 20%;
+  background-color: inherit;
+}

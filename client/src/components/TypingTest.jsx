@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setInput, incrementErrors, setWPM, setStartTime, reset } from '../store/typingSlice';
 import s from './TypingTest.module.css';
+import { RefreshCcw } from 'lucide-react';
 
 const russianWords = ['мама', 'папа', 'сын', 'дочь', 'бабушка', 'кот', 'собака'];
 
@@ -62,8 +63,12 @@ const TypingTest = () => {
             {char}
           </span>
         ))}
+        <button className={s.reload} onClick={reload}>
+          <RefreshCcw />
+        </button>
       </div>
       <input className={s.input} type='text' value={input} onChange={handleInputChange} />
+
       {input.length === TEXT.length && (
         <div className={s.result}>
           <h2>Результаты:</h2>
